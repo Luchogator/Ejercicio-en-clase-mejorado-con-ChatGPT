@@ -1,0 +1,53 @@
+# inicializar lista para almacenar datos de estudiantes
+estudiantes = []
+
+# definir función para validar entrada
+def validar_nota(nota):
+    while True:
+        try:
+            nota = float(nota)
+            if nota < 0 or nota > 20:
+                print("Error: la nota debe estar entre 0 y 20")
+                nota = input("Por favor ingrese una nota válida: ")
+            else:
+                break
+        except ValueError:
+            print("Error: entrada inválida")
+            nota = input("Por favor ingrese una nota válida: ")
+    return nota
+
+# bucle para ingresar datos de varios estudiantes
+while True:
+    print()
+    print("Ingrese los datos del estudiante:")
+    
+    # pedir al usuario que ingrese datos del estudiante
+    print()
+    nombreEstudiante = input("Nombre completo del estudiante (o 'q' para salir): ")
+    if nombreEstudiante == 'q':
+        break
+    
+    print()
+    notaPractica = validar_nota(input("Ingrese la nota de práctica (0-20): "))
+    notaTrabajo = validar_nota(input("Ingrese la nota de trabajo (0-20): "))
+    notaExamParc = validar_nota(input("Ingrese la nota de examen parcial (0-20): "))
+    notaExamFin = validar_nota(input("Ingrese la nota de examen final (0-20): "))
+
+    # calcular promedio
+    Promedio = (notaPractica + notaTrabajo + notaExamParc + notaExamFin)/4
+
+    # agregar datos del estudiante a la lista
+    estudiantes.append({"nombre": nombreEstudiante, "promedio": Promedio})
+    
+    # imprimir el promedio del estudiante
+    print()
+    print("El promedio del estudiante " + nombreEstudiante + " es: " + str(Promedio))
+
+# imprimir datos del estudiante
+print()
+print("Resultados finales:")
+for estudiante in estudiantes:
+    print()
+    print("Estudiante: " + estudiante["nombre"])
+    print("Promedio: " + str(estudiante["promedio"]))
+
